@@ -15,7 +15,7 @@ enum Result {
     GUESS, LESS, MORE
 }
 
-public class Task1 {    ///
+public class Task1 {    /////
     public static void main(String[] args) {
         //инициализация случайного числа от 1 до 100
         Random random = new Random();
