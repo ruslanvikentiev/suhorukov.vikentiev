@@ -15,11 +15,11 @@ public class Controller{
 
         Class c = null;
         try {
-            System.out.println("creating class c = " + cmdStr);
+            //System.out.println("creating class c = " + cmdStr);
             c = Class.forName(cmdStr);
             try {
                 cmd = (Command) c.newInstance();
-                System.out.println(cmd.getClass().toString());
+                //System.out.println(cmd.getClass().toString());
             } catch (InstantiationException e) {
                 System.out.println("InstantiationException");
             } catch (IllegalAccessException e) {

@@ -35,9 +35,9 @@ public class Calc {
                     cmd = str;
                 }
                 cmd = cmd.toLowerCase();
-                System.out.println(cmd + " contains in commands = " + prop.containsKey(cmd));
+                //System.out.println(cmd + " contains in commands = " + prop.containsKey(cmd));
                 if (!prop.containsKey(cmd)){
-                    System.out.println("Данная команда " + cmd + " не найдена в commands.txt");
+                    System.out.println("Команда '" + cmd + "' не найдена!");
                 } else {
 
                 ccc = c.getC(prop.getProperty(cmd));

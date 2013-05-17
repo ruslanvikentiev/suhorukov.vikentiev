@@ -23,11 +23,11 @@ public class DefineCmd implements Command{
         }
         tmp = str.substring(k,l);
         //проверить что tmp правильный идентификатор
-        System.out.println("define(param)="+tmp);
+        //System.out.println("define(param)="+tmp);
 
         try {
             a = Double.parseDouble(str.substring(l));
-            System.out.println("define(value)="+a);
+            //System.out.println("define(value)="+a);
             mp.put(tmp, a);
         } catch (NumberFormatException e) {
             System.out.println("Некорректный формат числа!");

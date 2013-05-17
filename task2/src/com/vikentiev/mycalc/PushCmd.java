@@ -35,7 +35,7 @@ public class PushCmd implements Command{
             }
         } //catch (NullPointerException e) {}
         st.push(a);
-        System.out.println("push = " + a);
+        //System.out.println("push = " + a);
     }
 
 }
