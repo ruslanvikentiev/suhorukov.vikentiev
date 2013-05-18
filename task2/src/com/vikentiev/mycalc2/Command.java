@@ -17,15 +17,6 @@ public interface Command{
     void execute();
 }
 
-class Check{
-    public boolean isEmpty(Stack st){
-        if (st.isEmpty()) {
-            System.out.println("Стек не содержит достаточное кол-во значений, выполнение операции невозможно!");
-            return true;
-        }
-        return false;
-    }
-}
 
 
 

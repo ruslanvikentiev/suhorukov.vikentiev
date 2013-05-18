@@ -11,9 +11,10 @@ import java.util.Stack;
  * To change this template use File | Settings | File Templates.
  */
 public class DefineCmd implements Command {
+    @Res(type=Param.CONTEXT)
     String str1;
+    @Res(type=Param.MAP)
     Map mp1;
-    @In(arg = {Param.CONTEXT, Param.MAP})
     public void execute() {
         double a;
         int k, l;

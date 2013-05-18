@@ -11,8 +11,8 @@ import java.util.Stack;
  * To change this template use File | Settings | File Templates.
  */
 public class PrintCmd extends Check implements Command {
+    @Res(type=Param.STACK)
     Stack st1;
-    @In(arg = {Param.STACK})
     public void execute() {
         String tmp;
         if (this.isEmpty(st1)) return;

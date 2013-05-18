@@ -11,7 +11,10 @@ import java.util.Stack;
  * To change this template use File | Settings | File Templates.
  */
 public class LogCmd extends Check implements Command {
+
+    @Res(type=Param.STACK)
     Stack st1;
+
     @In(arg = {Param.STACK})
     public void execute() {
         double a, b;

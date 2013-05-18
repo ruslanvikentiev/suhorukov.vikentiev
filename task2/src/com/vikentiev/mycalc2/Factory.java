@@ -12,6 +12,9 @@ import java.util.Properties;
  */
 public class Factory{
     Properties getProperties() throws IOException{
+
+       //System.out.println((char)this.getClass().getResourceAsStream("c.properties").read());
+
         File file = new File("C:/Ruslan/commands2.txt");
         FileInputStream inF = new FileInputStream(file);
         try{
@@ -24,6 +27,10 @@ public class Factory{
         try {
             prop.load(in);
         } catch (IOException e){
+        } finally {
+            if (in != null) {
+              in.close();
+            }
         }
         return prop;
     }

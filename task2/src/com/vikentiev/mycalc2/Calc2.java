@@ -9,13 +9,6 @@ import java.lang.reflect.*;
 import java.util.*;
 import java.lang.String;
 
-@Retention(RetentionPolicy.RUNTIME)
-//@Target(ElementType.FIELD)
-@interface In{
-        Param[] arg();
-}
-
-
 public class Calc2 {
         public static void main(String[] args) throws IOException {
             Scanner scanner = new Scanner(System.in);
@@ -23,7 +16,7 @@ public class Calc2 {
             String str, cmd;
             str = "";
             Stack st = new Stack();
-            Command ccc;
+            Command command;
             Controller c;
             int k;
 
@@ -35,7 +28,10 @@ public class Calc2 {
             prop = (new Factory()).getProperties();
             Field f;
             Method m;
-            In anno;
+            //In anno;
+            Res anno;
+            Annotation[] annos, ann2;
+            Field[] flds;
 
 
             while (!( str.equals("q"))){
@@ -52,50 +48,36 @@ public class Calc2 {
                     System.out.println("Команда '" + cmd + "' не найдена");
                 } else {
 
-                ccc = c.getC(prop.getProperty(cmd));
+                command = c.getC(prop.getProperty(cmd));
                 try {
-                    try {
-                    m = ccc.getClass().getMethod("execute");
-                    anno = m.getAnnotation(In.class);
-                        try {
-                            for (Param s : anno.arg()){
+                    flds = command.getClass().getDeclaredFields();
+                    for (Field f1 : flds) {
+                        anno = f1.getAnnotation(Res.class);
+                        //System.out.println(anno.type());
+                             for (Param s : anno.type()){
                                 switch (s) {
                                     case STACK:
-                                        f = ccc.getClass().getDeclaredField("st1");
-                                        f.setAccessible(true);
-                                        f.set(ccc, st);
+                                        //f = command.getClass().getDeclaredField("st1");
+                                        f1.setAccessible(true);
+                                        f1.set(command, st);
                                         break;
                                     case CONTEXT:
-                                        f = ccc.getClass().getDeclaredField("str1");
-                                        f.setAccessible(true);
-                                        f.set(ccc, str);
+                                        //f = command.getClass().getDeclaredField("str1");
+                                        f1.setAccessible(true);
+                                        f1.set(command, str);
+                                        break;
                                     case MAP:
-                                        f = ccc.getClass().getDeclaredField("mp1");
-                                        f.setAccessible(true);
-                                        f.set(ccc, map);
+                                        //f = command.getClass().getDeclaredField("mp1");
+                                        f1.setAccessible(true);
+                                        f1.set(command, map);
+                                        break;
                                 }
-                                /**
-                                if (s.equals(Param.STACK)){
-                                    f = ccc.getClass().getDeclaredField("st1");
-                                    f.setAccessible(true);
-                                    f.set(ccc, st);
-                                } else if (s.equals(Param.CONTEXT)){
-                                    f = ccc.getClass().getDeclaredField("str1");
-                                    f.setAccessible(true);
-                                    f.set(ccc, str);
-                                }else if (s.equals(Param.MAP)){
-                                    f = ccc.getClass().getDeclaredField("mp1");
-                                    f.setAccessible(true);
-                                    f.set(ccc, map);
-                                }*/
+                             }
+                    }
+                } catch (IllegalAccessException e) {System.out.println("IllegalAccessException");}
 
-                            }
-                        } catch (IllegalAccessException e) {System.out.println("IllegalAccessException");}
-                    } catch (NoSuchMethodException e) {}
-                } catch (NoSuchFieldException e) {System.out.println("NoSuchFieldException");}
-
-                if (ccc != null) {
-                    ccc.execute();
+                if (command != null) {
+                    command.execute();
                 } else {
                     System.out.println("Команда не распознана, попробуйте еще раз");
                 }
